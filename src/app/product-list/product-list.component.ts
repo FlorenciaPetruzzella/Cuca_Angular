@@ -16,6 +16,7 @@ export class ProductListComponent {
       price: 5000,
       stock: 1,
       clearance: true,
+      quantity: 0,
     },
     { 
       image:"assets/img/cartuchera_malva.png",
@@ -24,6 +25,7 @@ export class ProductListComponent {
       price: 1700,
       stock: 2,
       clearance: false,
+      quantity: 0,
     },
     { 
       image:"assets/img/matera_terra.png",
@@ -32,6 +34,7 @@ export class ProductListComponent {
       price: 4800,
       stock: 1,
       clearance: false,
+      quantity: 0,
     },
     { 
       image:"assets/img/portalente_paris.png",
@@ -40,6 +43,7 @@ export class ProductListComponent {
       price: 1350,
       stock: 0,
       clearance: false,
+      quantity: 0,
     },
     { 
       image:"assets/img/sobre_roma.png",
@@ -48,6 +52,7 @@ export class ProductListComponent {
       price: 2200,
       stock: 2,
       clearance: true,
+      quantity: 0,
     },
     { 
       image:"assets/img/panuelo_corales.png",
@@ -56,8 +61,23 @@ export class ProductListComponent {
       price: 1250,
       stock: 2,
       clearance: false,
+      quantity: 0,
     }
   ]
+
+  upQuantity(product:Product): void {
+    if (product.quantity < product.stock)
+    product.quantity++;
+  }
+
+  downQuantity(product:Product): void {
+    if (product.quantity>0)
+    product.quantity--;
+  }
+
+  /*changeQuantity(event, product:Product): void {
+    console.log(event);
+  }*/
 
 }
 

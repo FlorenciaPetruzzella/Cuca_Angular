@@ -1,4 +1,4 @@
-<div class="row row-cols-1 row-cols-md-3 g-4" >
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let product of products">
     <div class="card" [ngClass]="{'clearance' : product.clearance}">
       <img [src]="product.image" class="card-img-top" [alt]="product.name">
@@ -6,6 +6,14 @@
         <p class="card-title">{{product.type}} "{{product.name}}" </p>
         <p class="card-text">{{product.price | currency}}</p>
         <p *ngIf="product.stock<=0" class="card-text badge rounded-pill text-bg-secondary">Sin stock</p>
+        <div class="stock-buy" *ngIf="product.stock>0">
+          <button class="btn btn-outline-secondary btn-sm" (click)="downQuantity(product)">-</button>
+            Disponible 
+            <input type="text" style="width: 10%; border: none; background: none;"
+              [(ngModel)]="product.quantity">
+               <!--dentro de input pero no anda (keyup)="changeQuantity($event, product)"-->
+          <button class="btn btn-outline-secondary btn-sm" (click)="upQuantity(product)">+</button>
+        </div>
       </div>
     </div>
   </div>
