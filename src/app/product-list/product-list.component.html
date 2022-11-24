@@ -3,7 +3,8 @@
     <div class="card" [ngClass]="{'clearance' : product.clearance}">
       <img [src]="product.image" class="card-img-top" [alt]="product.name">
       <div class="card-body">
-        <p class="card-title">{{product.type}} "{{product.name}}" </p>
+        <p class="card-text" *ngIf="product.clearance" style="font-style: oblique;">Producto destacado</p>
+        <h6 class="card-title">{{product.type}} "{{product.name}}"</h6>
         <p class="card-text">{{product.price | currency}}</p>
         <p *ngIf="product.stock<=0" class="card-text badge rounded-pill text-bg-secondary">Sin stock</p>
         <div class="stock-buy" *ngIf="product.stock>0">
