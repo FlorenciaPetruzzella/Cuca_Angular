@@ -1,42 +1,12 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card">
-        <img [src]="product.image" class="card-img-top" [alt]="product.name">
-        <div class="card-body">
-          <h5 class="card-title">{{product.type}} "{{product.name}}" </h5>
-          <h6>{{product.price}}</h6>
-          <p class="card-text">Stock: {{product.stock}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Producto 2</h5>
-          <p class="card-text">Tipo</p>
-          <p class="card-text">$XXX</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Producto 3</h5>
-          <p class="card-text">Tipo</p>
-          <p class="card-text">$XXX</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Producto 4</h5>
-          <p class="card-text">Tipo</p>
-          <p class="card-text">$XXX</p>
-        </div>
+<div class="row row-cols-1 row-cols-md-3 g-4" >
+  <div class="col" *ngFor="let product of products">
+    <div class="card" [ngClass]="{'clearance' : product.clearance}">
+      <img [src]="product.image" class="card-img-top" [alt]="product.name">
+      <div class="card-body">
+        <p class="card-title">{{product.type}} "{{product.name}}" </p>
+        <p class="card-text">{{product.price | currency}}</p>
+        <p *ngIf="product.stock<=0" class="card-text badge rounded-pill text-bg-secondary">Sin stock</p>
       </div>
     </div>
   </div>
+</div>
