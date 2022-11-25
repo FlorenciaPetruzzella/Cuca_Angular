@@ -1,0 +1,8 @@
+<div class="stock-buy">
+    <button class="btn btn-outline-secondary btn-sm" (click)="downQuantity()">-</button>
+      Disponible 
+      <input type="text" style="width: 4%; border: none; background: none;"
+        [(ngModel)]="quantity">
+         <!--dentro de input pero no anda (keyup)="changeQuantity($event, product)"-->
+    <button class="btn btn-outline-secondary btn-sm" (click)="upQuantity()">+</button>
+</div>
