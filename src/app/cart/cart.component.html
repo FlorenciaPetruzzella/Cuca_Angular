@@ -1,1 +1,10 @@
-<h6>Carrito de compras</h6>
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header text-center"><h6>Carrito de compras</h6></div>
+    <div class="card-body">
+        <ul>
+            <li *ngFor="let product of cartList$ | async">
+               <p class="card-text" *ngIf="product.quantity>0">{{product.type}} "{{product.name}}" : {{product.quantity}}</p>
+            </li>
+        </ul>
+    </div>
+</div>

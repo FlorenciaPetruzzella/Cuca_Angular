@@ -1,8 +1,7 @@
 <div class="stock-buy">
-    <button class="btn btn-outline-secondary btn-sm" (click)="downQuantity()">-</button>
-      Disponible 
-      <input type="text" style="width: 4%; border: none; background: none;"
+  <a type="button" class="card-text badge rounded-pill text-bg-secondary" style="text-decoration:none;" (click)="downQuantity()">-</a>
+      <input type="text" style="width:6%; border: none; background: none; font-size: smaller;"
         [(ngModel)]="quantity">
          <!--dentro de input pero no anda (keyup)="changeQuantity($event, product)"-->
-    <button class="btn btn-outline-secondary btn-sm" (click)="upQuantity()">+</button>
+  <a type="button" class="card-text badge rounded-pill text-bg-secondary" style="text-decoration:none;"  (click)="upQuantity()">+</a> 
 </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from './product-list/Product';
 
 @Injectable({
@@ -7,15 +8,19 @@ import { Product } from './product-list/Product';
 
 export class ProductCartService {
 
-  cartList: Product[] = [];
+  private _cartList: Product [] = [];
+  cartList: BehaviorSubject<Product[]> = new BehaviorSubject(this._cartList);
 
   constructor() { }
 
   addToCart (product: Product){
-    let item: Product= this.cartList.find((v1) => v1.name == product.name)!;
+    let item: Product= this._cartList.find((v1) => v1.name == product.name)!;
     if (!item){
-      this.cartList.push(product);
+      this._cartList.push({ ... product}); // {... product} clona el objeto
+    } else {
+      item.quantity += product.quantity;
     }
-    console.log(this.cartList);
+    console.log(this._cartList);
+    this.cartList.next(this._cartList);
   }
 }
