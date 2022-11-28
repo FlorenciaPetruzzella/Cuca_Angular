@@ -8,6 +8,7 @@
         <p class="card-text">{{product.price | currency}}</p>
         <p *ngIf="product.stock<=0" class="card-text badge rounded-pill text-bg-secondary">Sin stock</p>
         <app-input-integer [(quantity)]="product.quantity" [max]="product.stock" *ngIf="product.stock>0"></app-input-integer>
+        <a type="button" *ngIf="product.stock>0" class="card-text badge rounded-pill text-bg-secondary" (click)="addToCart(product)">Comprar</a>
       </div>
     </div>
   </div>
