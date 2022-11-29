@@ -1,9 +1,20 @@
 <div class="card bg-light mb-3" style="max-width: 18rem;">
-    <div class="card-header text-center"><h6>Carrito de compras</h6></div>
+    <div class="card-header text-center">
+        <h6>Carrito de compras</h6>
+    </div>
     <div class="card-body">
         <ul>
-            <li *ngFor="let product of cartList$ | async">
-               <p class="card-text" *ngIf="product.quantity>0">{{product.type}} "{{product.name}}" : {{product.quantity}}</p>
+            <li *ngFor="let product of cartList$ | async" style="list-style:none;">
+                <div class="row">
+                    <div class="col-9">
+                        <p class="card-text"> <small><strong>{{product.type}} "{{product.name}}" :</strong>
+                            {{product.quantity}}</small></p>
+                    </div>
+                    <div class="col-3">
+                        <a type="button" class="card-text badge rounded-pill text-bg-secondary"
+                            style="text-decoration:none;" (click)="deleteToCart(product)">X</a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

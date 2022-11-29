@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCartService } from '../product-cart.service';
+import { ProductDataService } from '../product-data.service';
 import { Product } from './Product';
 
 @Component({
@@ -11,72 +12,26 @@ export class ProductListComponent implements OnInit{
 
   
   
-  products: Product[] = [
-    { 
-      image:"assets/img/mochila_cosmos.png",
-      type:"Mochila",
-      name:"Cosmos",
-      price: 5000,
-      stock: 1,
-      clearance: true,
-      quantity: 0,
-    },
-    { 
-      image:"assets/img/cartuchera_malva.png",
-      type:"Neceser",
-      name:"Malva",
-      price: 1700,
-      stock: 2,
-      clearance: false,
-      quantity: 0,
-    },
-    { 
-      image:"assets/img/matera_terra.png",
-      type:"Matera",
-      name:"Terra",
-      price: 4800,
-      stock: 1,
-      clearance: false,
-      quantity: 0,
-    },
-    { 
-      image:"assets/img/portalente_paris.png",
-      type:"Porta-Lentes",
-      name:"Paris",
-      price: 1350,
-      stock: 0,
-      clearance: false,
-      quantity: 0,
-    },
-    { 
-      image:"assets/img/sobre_roma.png",
-      type:"Sobre de mano",
-      name:"Roma",
-      price: 2200,
-      stock: 2,
-      clearance: true,
-      quantity: 0,
-    },
-    { 
-      image:"assets/img/panuelo_corales.png",
-      type:"Pañuelo",
-      name:"Corales",
-      price: 1250,
-      stock: 2,
-      clearance: false,
-      quantity: 0,
-    }
-  ]
+  products: Product[] = [];
 
-  constructor (private cart:ProductCartService){
+  constructor (private cart: ProductCartService, private productDataService: ProductDataService){
+
   }
+
   ngOnInit(): void {
+    this.productDataService.getAll().subscribe(products => this.products = products);
+    this.cart.product.subscribe(resp => {this.removeToCart(resp)});
   }
 
   addToCart (product: Product): void{
     this.cart.addToCart(product);
     product.stock -= product.quantity;
     product.quantity = 0;
+  }
+
+  removeToCart(product: Product){
+    let item = this.products.find((v1) => v1.id == product.id)!;
+    item.stock += product.quantity;
   }
 
 }

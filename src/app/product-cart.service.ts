@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from './product-list/Product';
 
@@ -9,7 +9,9 @@ import { Product } from './product-list/Product';
 export class ProductCartService {
 
   private _cartList: Product [] = [];
-  cartList: BehaviorSubject<Product[]> = new BehaviorSubject(this._cartList);
+  cartList: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+
+  @Output() product: EventEmitter<Product> = new EventEmitter();
 
   constructor() { }
 
@@ -20,7 +22,11 @@ export class ProductCartService {
     } else {
       item.quantity += product.quantity;
     }
-    console.log(this._cartList);
     this.cartList.next(this._cartList);
+  }
+
+  deleteProductoToCart(product: any): void {
+    this._cartList.splice(product);
+    this.product.emit(product);
   }
 }
