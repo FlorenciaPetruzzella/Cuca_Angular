@@ -12,6 +12,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductAboutComponent } from './product-about/product-about.component';
 import { InputIntegerComponent } from './input-integer/input-integer.component';
 import { ShoppingCucaComponent } from './shopping-cuca/shopping-cuca.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,14 @@ import { ShoppingCucaComponent } from './shopping-cuca/shopping-cuca.component';
     CartComponent,
     ProductAboutComponent,
     InputIntegerComponent,
-    ShoppingCucaComponent
+    ShoppingCucaComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

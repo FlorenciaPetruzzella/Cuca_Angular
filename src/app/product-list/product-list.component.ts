@@ -9,8 +9,6 @@ import { Product } from './Product';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit{
-
-  
   
   products: Product[] = [];
 
