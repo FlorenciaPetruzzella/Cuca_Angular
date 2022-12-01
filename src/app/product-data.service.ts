@@ -17,4 +17,5 @@ export class ProductDataService {
     return this.http.get<Product[]>(URL).
                     pipe(tap((products: Product[]) => products.forEach (product => product.quantity = 0)));
   }
+
 }

@@ -18,15 +18,16 @@ export class ProductCartService {
   addToCart (product: Product){
     let item: Product= this._cartList.find((v1) => v1.name == product.name)!;
     if (!item){
-      this._cartList.push({ ... product}); // {... product} clona el objeto
+      this._cartList.push({ ... product}); 
     } else {
       item.quantity += product.quantity;
     }
     this.cartList.next(this._cartList);
   }
 
-  deleteProductoToCart(product: any): void {
-    this._cartList.splice(product);
+  deleteProductToCart(id: number, product: Product) {
+    let index = this._cartList.findIndex(i => i.id === id);
+    this._cartList.splice(index, 1);
     this.product.emit(product);
   }
 }

@@ -19,5 +19,5 @@ export class ContactComponent {
     this.http.post(URL, queries).subscribe((res) => {
       console.log(res)
     });
-  }
+  } 
 }

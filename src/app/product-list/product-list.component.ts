@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit{
 
   ngOnInit(): void {
     this.productDataService.getAll().subscribe(products => this.products = products);
-    this.cart.product.subscribe(resp => {this.removeToCart(resp)});
+    this.cart.product.subscribe(resp => {this.toUpdateToCart(resp)});
   }
 
   addToCart (product: Product): void{
@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit{
     product.quantity = 0;
   }
 
-  removeToCart(product: Product){
+  toUpdateToCart(product: Product){
     let item = this.products.find((v1) => v1.id == product.id)!;
     item.stock += product.quantity;
   }
