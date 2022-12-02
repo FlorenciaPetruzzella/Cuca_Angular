@@ -7,7 +7,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 import {HttpClientModule} from '@angular/common/http';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { ProductAboutComponent } from './product-about/product-about.component';
 import { InputIntegerComponent } from './input-integer/input-integer.component';
@@ -29,6 +29,7 @@ import { ContactComponent } from './contact/contact.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

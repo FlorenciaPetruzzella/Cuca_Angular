@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactDataService } from '../contact-data.service';
 
-const URL = 'https://6384dd843fa7acb14f031f6b.mockapi.io/api/v1/queries';
 
 @Component({
   selector: 'app-contact',
@@ -11,13 +11,37 @@ const URL = 'https://6384dd843fa7acb14f031f6b.mockapi.io/api/v1/queries';
 
 export class ContactComponent {
 
-  constructor(private http: HttpClient){
+  formContact!: FormGroup;
+  msg = false;
+  error = false;
+  query = [];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactDataService: ContactDataService) {
+    this.buildForm();
   }
 
-  onQueryCreate(queries: {name: string, surname: string, email: string, message: string}) {
-    console.log(queries);
-    this.http.post(URL, queries).subscribe((res) => {
-      console.log(res)
+  private buildForm() {
+    this.formContact = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      surname: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', [Validators.required, Validators.maxLength(200)]],
     });
-  } 
+  }
+
+  addQuery(event: Event) {
+    if(this.formContact.valid){
+      this.contactDataService.addQuery(this.formContact);
+      this.formContact.reset();
+      this.msg = true;
+    } else {
+      this.error = true;
+    }
+  }
+
+  
+
 }
+

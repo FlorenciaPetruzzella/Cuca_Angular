@@ -1,22 +1,28 @@
 <div class="row form-contact">
     <div class="col-8">
         <h4 class="text-muted">¡DEJA TU CONSULTA!</h4>
-        <form #queriesForm="ngForm" (ngSubmit)="onQueryCreate(queriesForm.value)">
+        <form [formGroup]="formContact" (ngSubmit)="addQuery($event)">
             <div class="mb-3 lead">
                 <label class="form-label">Nombre</label>
-                <input type="text" name="name" class="form-control" ngModel>
+                <input type="text" name="name" class="form-control" formControlName="name">
             </div>
             <div class="mb-3 lead">
                 <label class="form-label">Apellido</label>
-                <input type="text" name="surname" class="form-control" ngModel>
+                <input type="text" name="surname" class="form-control" formControlName="surname">
             </div>
             <div class="mb-3 lead">
-                <label for="exampleFormControlInput1" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="name@example.com" ngModel>
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="name@example.com"
+                    formControlName="email">
             </div>
             <div class="mb-3 lead">
                 <label class="form-label">Mensaje</label>
-                <textarea name="message" class="form-control" rows="3" ngModel></textarea>
+                <textarea name="message" placeholder="..." class="form-control" rows="3"
+                    formControlName="message"></textarea>
+            </div>
+            <div>
+                <p  class="alert alert-success" *ngIf="msg">Su consulta fue enviada, pronto nos pondremos en contacto!</p>
+                <p class="alert alert-danger" *ngIf="error">Error! Intente nuevamente</p>
             </div>
             <input type="submit" value="Enviar">
         </form>
